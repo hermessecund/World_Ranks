@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Layout from "../../components/Layout/Layout";
 import styles from "./Country.module.css";
-import  Link  from "next/Link";
+import  Link  from "next/link";
 import Image from "next/image"
 
 const getCountry = async (id) => {
