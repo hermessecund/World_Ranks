@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import Layout from "../../components/Layout/Layout";
 import styles from "./Country.module.css";
 import Link from "next/link";
-import Image from "next/image";
 
 const getCountry = async (id) => {
   const res = await fetch(`https://restcountries.com/v2/alpha/${id}`);
@@ -34,7 +33,7 @@ const Country = ({ country }) => {
       <div className={styles.container}>
         <div className={styles.container_left}>
           <div className={styles.overview_panel}>
-            <Image
+            <img
               layout="responsive"
               width={280}
               height={187}
@@ -106,7 +105,7 @@ const Country = ({ country }) => {
                 {borders.map(({ flag, name, alpha3Code }) => (
                   <Link href={`/country/${alpha3Code}`} key={country.name}>
                     <div className={styles.details_panel_borders_country}>
-                      <Image
+                      <img
                         layout="responsive"
                         width={145}
                         height={83}

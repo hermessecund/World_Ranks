@@ -1,8 +1,10 @@
-import {KeyboardArrowDownRounded,KeyboardArrowUpRounded,} from "@material-ui/icons";
+import {
+  KeyboardArrowDownRounded,
+  KeyboardArrowUpRounded,
+} from "@material-ui/icons";
 import { useState } from "react";
 import styles from "./CountriesTable.module.css";
 import Link from "next/link";
-import Image from "next/image";
 
 const orderBy = (countries, value, direction) => {
   if (direction === "asc") {
@@ -84,11 +86,12 @@ const CountriesTable = ({ countries }) => {
           className={styles.heading_area}
           onClick={() => setValueAndDirection("area")}
         >
-          <div>Area (km<sup style={{fontSize:"0.5 rem"}}>2</sup>)</div>
+          <div>
+            Area (km<sup style={{ fontSize: "0.5 rem" }}>2</sup>)
+          </div>
 
           {value === "area" && <SortArrow direction={direction} />}
         </button>
-
 
         <button
           className={styles.heading_gini}
@@ -98,25 +101,29 @@ const CountriesTable = ({ countries }) => {
 
           {value === "gini" && <SortArrow direction={direction} />}
         </button>
-
-
       </div>
 
       {orderedCountries.map((country) => (
-            <Link href={`/country/${country.alpha3Code}`} key={country.name}>
-                <div className={styles.row}>
-                  <div className={styles.flag}>
-                  <Image layout="responsive" width={59} height={39} src={country.flag} alt={country.name} />
-                  </div>
-                <div className={styles.name}>{country.name}</div>
-                <div className={styles.population}>{country.population}</div>
-                <div className={styles.area}>{country.area || 0}</div>
-                <div className={styles.gini}>{country.gini || 0}%</div>
+        <Link href={`/country/${country.alpha3Code}`} key={country.name}>
+          <div className={styles.row}>
+            <div className={styles.flag}>
+              <img
+                layout="responsive"
+                width={59}
+                height={39}
+                src={country.flag}
+                alt={country.name}
+              />
             </div>
-            </Link>
-        ))}
+            <div className={styles.name}>{country.name}</div>
+            <div className={styles.population}>{country.population}</div>
+            <div className={styles.area}>{country.area || 0}</div>
+            <div className={styles.gini}>{country.gini || 0}%</div>
+          </div>
+        </Link>
+      ))}
     </div>
-    );
+  );
 };
 
 export default CountriesTable;
