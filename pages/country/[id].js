@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import Layout from "../../components/Layout/Layout";
 import styles from "./Country.module.css";
-import  Link  from "next/link";
-import Image from "next/image"
+import Link from "next/link";
+import Image from "next/image";
 
 const getCountry = async (id) => {
-  const res = await fetch(`https://restcountries.eu/rest/v2/alpha/${id}`);
+  const res = await fetch(`https://restcountries.com/rest/v2/alpha/${id}`);
 
   const country = await res.json();
 
@@ -34,7 +34,13 @@ const Country = ({ country }) => {
       <div className={styles.container}>
         <div className={styles.container_left}>
           <div className={styles.overview_panel}>
-            <Image layout="responsive" width={280} height={187} src={country.flag} alt={country.name} />
+            <Image
+              layout="responsive"
+              width={280}
+              height={187}
+              src={country.flag}
+              alt={country.name}
+            />
 
             <h1 className={styles.overview_name}>{country.name}</h1>
             <div className={styles.overview_region}>{country.region}</div>
@@ -97,19 +103,23 @@ const Country = ({ country }) => {
               </div>
 
               <div className={styles.details_panel_borders_container}>
-                {borders.map(({ flag, name , alpha3Code }) => (
+                {borders.map(({ flag, name, alpha3Code }) => (
                   <Link href={`/country/${alpha3Code}`} key={country.name}>
-                  <div className={styles.details_panel_borders_country}>
-                  <Image layout="responsive" width={145} height={83} src={flag} alt={name} />
-                    <div className={styles.details_panel_borders_name}>
-                      {name}
+                    <div className={styles.details_panel_borders_country}>
+                      <Image
+                        layout="responsive"
+                        width={145}
+                        height={83}
+                        src={flag}
+                        alt={name}
+                      />
+                      <div className={styles.details_panel_borders_name}>
+                        {name}
+                      </div>
                     </div>
-                  </div>
-        
                   </Link>
                 ))}
               </div>
-              
             </div>
           </div>
         </div>
@@ -121,7 +131,7 @@ const Country = ({ country }) => {
 export default Country;
 
 export const getStaticPaths = async () => {
-  const res = await fetch("https://restcountries.eu/rest/v2/all");
+  const res = await fetch("https://restcountries.com/rest/v2/all");
   const countries = await res.json();
 
   const paths = countries.map((country) => ({
